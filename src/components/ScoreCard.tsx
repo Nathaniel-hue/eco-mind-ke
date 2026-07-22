@@ -2,10 +2,10 @@ import type { SustainabilityScores } from "@/lib/offline-kb";
 import { Leaf, Coins, Users, Star } from "lucide-react";
 
 function scoreColor(v: number) {
-  if (v >= 80) return "var(--leaf)";
-  if (v >= 60) return "oklch(0.75 0.15 90)";
-  if (v >= 40) return "oklch(0.75 0.15 60)";
-  return "oklch(0.65 0.2 25)";
+  if (v >= 80) return "oklch(0.15 0 0)";
+  if (v >= 60) return "oklch(0.35 0 0)";
+  if (v >= 40) return "oklch(0.55 0 0)";
+  return "oklch(0.72 0 0)";
 }
 
 function Bar({ label, value, icon: Icon }: { label: string; value: number; icon: React.ComponentType<{ className?: string }> }) {
