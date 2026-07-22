@@ -41,84 +41,82 @@
   --color-chart-3: var(--chart-3);
   --color-chart-4: var(--chart-4);
   --color-chart-5: var(--chart-5);
-  --font-display: "Instrument Serif", ui-serif, Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Newsreader", ui-serif, Georgia, serif;
+  --font-sans: "Newsreader", ui-serif, Georgia, serif;
+  --font-hand: "Caveat", ui-serif, cursive;
 }
 
 :root {
-  --radius: 0.875rem;
-  --background: oklch(0.99 0.005 130);
-  --foreground: oklch(0.18 0.02 155);
+  --radius: 0.5rem;
+  --background: oklch(0.98 0 0);
+  --foreground: oklch(0.15 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 155);
+  --card-foreground: oklch(0.15 0 0);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 155);
-  --primary: oklch(0.55 0.15 155);
-  --primary-foreground: oklch(0.99 0.005 130);
-  --secondary: oklch(0.96 0.02 150);
-  --secondary-foreground: oklch(0.25 0.05 155);
-  --muted: oklch(0.96 0.015 150);
-  --muted-foreground: oklch(0.5 0.02 155);
-  --accent: oklch(0.94 0.05 150);
-  --accent-foreground: oklch(0.25 0.08 155);
-  --destructive: oklch(0.58 0.22 25);
-  --destructive-foreground: oklch(0.99 0.005 130);
-  --border: oklch(0.9 0.015 150);
-  --input: oklch(0.94 0.015 150);
-  --ring: oklch(0.55 0.15 155);
-  --leaf: oklch(0.62 0.17 150);
-  --leaf-foreground: oklch(0.99 0.005 130);
-  --leaf-glow: oklch(0.78 0.18 145);
-  --earth: oklch(0.55 0.09 60);
-  --sky: oklch(0.72 0.12 220);
-  --chart-1: oklch(0.62 0.17 150);
-  --chart-2: oklch(0.72 0.12 220);
-  --chart-3: oklch(0.75 0.15 90);
-  --chart-4: oklch(0.55 0.09 60);
-  --chart-5: oklch(0.65 0.2 30);
+  --popover-foreground: oklch(0.15 0 0);
+  --primary: oklch(0.15 0 0);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.94 0 0);
+  --secondary-foreground: oklch(0.2 0 0);
+  --muted: oklch(0.95 0 0);
+  --muted-foreground: oklch(0.45 0 0);
+  --accent: oklch(0.92 0 0);
+  --accent-foreground: oklch(0.15 0 0);
+  --destructive: oklch(0.35 0 0);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.87 0 0);
+  --input: oklch(0.92 0 0);
+  --ring: oklch(0.25 0 0);
+  --leaf: oklch(0.15 0 0);
+  --leaf-foreground: oklch(0.98 0 0);
+  --leaf-glow: oklch(0.35 0 0);
+  --earth: oklch(0.4 0 0);
+  --sky: oklch(0.6 0 0);
+  --chart-1: oklch(0.2 0 0);
+  --chart-2: oklch(0.4 0 0);
+  --chart-3: oklch(0.55 0 0);
+  --chart-4: oklch(0.7 0 0);
+  --chart-5: oklch(0.82 0 0);
 
-  --gradient-hero: radial-gradient(1200px 600px at 10% -10%, oklch(0.88 0.12 145 / 0.55), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, oklch(0.88 0.1 200 / 0.4), transparent 60%),
-    linear-gradient(180deg, oklch(0.99 0.005 130), oklch(0.97 0.015 140));
-  --gradient-leaf: linear-gradient(135deg, var(--leaf), var(--leaf-glow));
-  --shadow-glow: 0 20px 60px -20px oklch(0.55 0.15 155 / 0.35);
-  --shadow-card: 0 1px 2px oklch(0.2 0.02 155 / 0.06), 0 8px 32px -12px oklch(0.2 0.02 155 / 0.12);
+  --gradient-hero: linear-gradient(180deg, oklch(0.98 0 0), oklch(0.94 0 0));
+  --gradient-leaf: linear-gradient(135deg, oklch(0.15 0 0), oklch(0.3 0 0));
+  --shadow-glow: 0 10px 30px -12px oklch(0 0 0 / 0.25);
+  --shadow-card: 0 1px 2px oklch(0 0 0 / 0.05), 0 4px 16px -8px oklch(0 0 0 / 0.08);
 }
 
 .dark {
-  --background: oklch(0.16 0.02 155);
-  --foreground: oklch(0.97 0.01 140);
-  --card: oklch(0.21 0.025 155);
-  --card-foreground: oklch(0.97 0.01 140);
-  --popover: oklch(0.21 0.025 155);
-  --popover-foreground: oklch(0.97 0.01 140);
-  --primary: oklch(0.75 0.16 150);
-  --primary-foreground: oklch(0.15 0.03 155);
-  --secondary: oklch(0.26 0.03 155);
-  --secondary-foreground: oklch(0.97 0.01 140);
-  --muted: oklch(0.26 0.03 155);
-  --muted-foreground: oklch(0.72 0.02 145);
-  --accent: oklch(0.3 0.05 150);
-  --accent-foreground: oklch(0.97 0.01 140);
-  --destructive: oklch(0.65 0.2 25);
-  --destructive-foreground: oklch(0.97 0.01 140);
-  --border: oklch(1 0 0 / 8%);
-  --input: oklch(1 0 0 / 12%);
-  --ring: oklch(0.75 0.16 150);
-  --leaf: oklch(0.72 0.17 150);
-  --leaf-foreground: oklch(0.15 0.03 155);
-  --leaf-glow: oklch(0.82 0.18 140);
+  --background: oklch(0.12 0 0);
+  --foreground: oklch(0.96 0 0);
+  --card: oklch(0.16 0 0);
+  --card-foreground: oklch(0.96 0 0);
+  --popover: oklch(0.16 0 0);
+  --popover-foreground: oklch(0.96 0 0);
+  --primary: oklch(0.96 0 0);
+  --primary-foreground: oklch(0.12 0 0);
+  --secondary: oklch(0.22 0 0);
+  --secondary-foreground: oklch(0.96 0 0);
+  --muted: oklch(0.22 0 0);
+  --muted-foreground: oklch(0.7 0 0);
+  --accent: oklch(0.25 0 0);
+  --accent-foreground: oklch(0.96 0 0);
+  --destructive: oklch(0.75 0 0);
+  --destructive-foreground: oklch(0.12 0 0);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.85 0 0);
+  --leaf: oklch(0.96 0 0);
+  --leaf-foreground: oklch(0.12 0 0);
+  --leaf-glow: oklch(0.75 0 0);
 
-  --gradient-hero: radial-gradient(1200px 600px at 10% -10%, oklch(0.4 0.15 150 / 0.35), transparent 60%),
-    radial-gradient(900px 500px at 100% 0%, oklch(0.35 0.1 220 / 0.35), transparent 60%),
-    linear-gradient(180deg, oklch(0.16 0.02 155), oklch(0.13 0.02 155));
-  --shadow-glow: 0 20px 60px -20px oklch(0.75 0.16 150 / 0.4);
-  --shadow-card: 0 1px 2px oklch(0 0 0 / 0.4), 0 8px 32px -12px oklch(0 0 0 / 0.5);
+  --gradient-hero: linear-gradient(180deg, oklch(0.12 0 0), oklch(0.16 0 0));
+  --gradient-leaf: linear-gradient(135deg, oklch(0.96 0 0), oklch(0.75 0 0));
+  --shadow-glow: 0 10px 30px -12px oklch(0 0 0 / 0.5);
+  --shadow-card: 0 1px 2px oklch(0 0 0 / 0.4), 0 4px 16px -8px oklch(0 0 0 / 0.5);
 }
 
 @utility glass {
-  background: color-mix(in oklab, var(--card) 70%, transparent);
-  backdrop-filter: blur(16px) saturate(160%);
+  background: color-mix(in oklab, var(--card) 82%, transparent);
+  backdrop-filter: blur(12px) saturate(140%);
   border: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
 }
 
@@ -138,6 +136,10 @@
   box-shadow: var(--shadow-card);
 }
 
+@utility font-hand {
+  font-family: var(--font-hand);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -154,6 +156,7 @@
   h2,
   h3 {
     letter-spacing: -0.02em;
+    font-weight: 500;
   }
 }
 
