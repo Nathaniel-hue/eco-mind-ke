@@ -81,17 +81,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "EcoMind AI is a sustainability assistant that scores lifestyle choices across environmental, economic, and social impact — with alternatives, tips, and trusted sources.",
+          "Ask EcoMind AI about any choice and get a sustainability score, better alternatives, and trusted sources.",
       },
       { name: "author", content: "EcoMind AI" },
       { property: "og:title", content: "EcoMind AI — Make Smarter Sustainable Decisions" },
       {
         property: "og:description",
         content:
-          "AI-powered sustainability scoring for your daily decisions. Offline knowledge base, research mode, and clear alternatives.",
+          "Ask EcoMind AI about any choice and get a sustainability score, better alternatives, and trusted sources.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "EcoMind AI — Make Smarter Sustainable Decisions" },
+      { name: "twitter:description", content: "Ask EcoMind AI about any choice and get a sustainability score, better alternatives, and trusted sources." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ff9f202b-6cc6-43f7-b5d4-4b6ade316052/id-preview-8a821895--1dabd096-2d5c-40fe-9d8e-d496c96e8fc7.lovable.app-1784733476217.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ff9f202b-6cc6-43f7-b5d4-4b6ade316052/id-preview-8a821895--1dabd096-2d5c-40fe-9d8e-d496c96e8fc7.lovable.app-1784733476217.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

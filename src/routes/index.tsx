@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "EcoMind AI — Make Smarter Sustainable Decisions" },
       {
         property: "og:description",
-        content: "AI-powered sustainability scoring for your daily decisions.",
+        content: "Ask EcoMind AI about any choice and get a sustainability score, better alternatives, and trusted sources.",
       },
     ],
   }),
