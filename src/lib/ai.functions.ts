@@ -45,13 +45,13 @@ Include a short "category" like Transport, Food, Energy, Recycling, Consumption,
 ${data.research ? 'Base your answer on well-established environmental science from government, university, and NGO sources. Include 2-4 relevant "sources" with real reputable URLs (e.g. epa.gov, un.org, iea.org, nature.com).' : ""}`;
 
     try {
-      const { experimental_output } = await generateText({
+      const result = await generateText({
         model,
         system: systemPrompt,
         prompt: data.question,
-        experimental_output: Output.object({ schema: AnswerSchema }),
+        output: Output.object({ schema: AnswerSchema }),
       });
-      return experimental_output;
+      return result.output;
     } catch (error) {
       if (NoObjectGeneratedError.isInstance(error)) {
         try {
