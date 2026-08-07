@@ -26,7 +26,7 @@ const sections = [
   {
     icon: Lightbulb,
     title: "Our solution",
-    body: "EcoMind AI turns any question about a habit, purchase, or decision into a clear sustainability analysis: an overall score, three dimensional sub-scores, better alternatives, and practical tips. The interface is a familiar chat, so anyone can use it without training.",
+    body: "EcoMind AI turns any question about a habit, purchase, or decision into a clear sustainability analysis: an overall score, three dimensional sub-scores, better alternatives, and practical tips. The interface is a simple search box, so anyone can use it without training.",
   },
   {
     icon: Cpu,
