@@ -1,121 +1,86 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ChatInterface } from "@/components/ChatInterface";
-import { Sparkles, ArrowRight, Leaf, Globe, WifiOff, LineChart } from "lucide-react";
+import { useRef, useState } from "react";
+import { HeroSection } from "@/components/HeroSection";
+import { AskBar } from "@/components/AskBar";
+import { AnswerCard } from "@/components/AnswerCard";
+import { PopularQuestions } from "@/components/PopularQuestions";
+import { TipsSection } from "@/components/TipsSection";
+import { HowItWorks } from "@/components/HowItWorks";
+import { ModesSection } from "@/components/ModesSection";
+import { useAsk } from "@/lib/use-ask";
+import { Loader2, AlertCircle } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "EcoMind AI — Make Smarter Sustainable Decisions" },
+      { title: "EcoMind — Smarter, More Sustainable Everyday Decisions" },
       {
         name: "description",
         content:
-          "Ask EcoMind AI about any choice and get a sustainability score, better alternatives, and trusted sources.",
+          "Ask about any everyday choice and get a sustainability score, plain-language reasoning, practical alternatives and the sources behind it.",
       },
-      { property: "og:title", content: "EcoMind AI — Make Smarter Sustainable Decisions" },
+      { property: "og:title", content: "EcoMind — Smarter, More Sustainable Everyday Decisions" },
       {
         property: "og:description",
-        content: "Ask EcoMind AI about any choice and get a sustainability score, better alternatives, and trusted sources.",
+        content:
+          "Sustainability scores, practical alternatives and trusted sources for the choices you make every day.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,
 });
 
-function scrollToChat() {
-  document.getElementById("chat")?.scrollIntoView({ behavior: "smooth", block: "start" });
-}
-
 function Home() {
+  const { result, loading, error, research, setResearch, offlineOnly, submit } = useAsk();
+  const [value, setValue] = useState("");
+  const answerRef = useRef<HTMLDivElement>(null);
+
+  async function handleAsk(q: string) {
+    setValue(q);
+    await submit(q);
+    answerRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   return (
     <main>
-      {/* Hero */}
-      <section className="relative overflow-hidden px-4 pt-12 sm:px-6 sm:pt-20">
-        <div className="mx-auto max-w-4xl text-center animate-fade-up">
-          <div className="inline-flex items-center gap-2 rounded-full border bg-card/60 px-3 py-1 text-xs text-muted-foreground shadow-card">
-            <Sparkles className="h-3 w-3 text-leaf" />
-            AI-powered sustainability assistant
-          </div>
-          <h1 className="mt-6 font-display text-5xl leading-[1.05] sm:text-7xl">
-            Make Smarter{" "}
-            <span className="bg-gradient-to-br from-leaf to-leaf-glow bg-clip-text text-transparent">
-              Sustainable
-            </span>{" "}
-            Decisions
-          </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-            EcoMind AI helps you understand the environmental impact of your choices using
-            artificial intelligence and trusted information.
-          </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <button
-              onClick={scrollToChat}
-              className="group inline-flex items-center gap-2 rounded-xl leaf-gradient px-5 py-3 text-sm font-medium text-leaf-foreground shadow-glow transition hover:opacity-95"
-            >
-              Start Chatting
-              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
-            </button>
-            <a
-              href="/about"
-              className="inline-flex items-center gap-2 rounded-xl border bg-card/60 px-5 py-3 text-sm font-medium transition hover:bg-accent"
-            >
-              Learn More
-            </a>
-          </div>
+      <HeroSection />
 
-          {/* feature strip */}
-          <div className="mx-auto mt-14 grid max-w-3xl gap-3 sm:grid-cols-3">
-            {[
-              { icon: Leaf, label: "Sustainability scores" },
-              { icon: WifiOff, label: "Offline knowledge base" },
-              { icon: Globe, label: "Research mode + sources" },
-            ].map(({ icon: Icon, label }) => (
-              <div
-                key={label}
-                className="glass flex items-center justify-center gap-2 rounded-xl p-3 text-sm"
-              >
-                <Icon className="h-4 w-4 text-leaf" />
-                {label}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className="mx-auto max-w-6xl space-y-24 px-5 py-16 sm:px-6 sm:py-24">
+        <section className="-mt-28 sm:-mt-32">
+          <AskBar
+            onSubmit={handleAsk}
+            loading={loading}
+            research={research}
+            setResearch={setResearch}
+            offlineOnly={offlineOnly}
+            value={value}
+            setValue={setValue}
+          />
+        </section>
 
-      {/* Chat */}
-      <section id="chat" className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
-        <ChatInterface />
-      </section>
-
-      {/* Value strip */}
-      <section className="mx-auto max-w-6xl px-4 pb-20 sm:px-6">
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            {
-              icon: Leaf,
-              title: "Score every choice",
-              body: "Environmental, economic, and social impact — quantified 0–100 with clear reasoning.",
-            },
-            {
-              icon: LineChart,
-              title: "Track your habits",
-              body: "A personal dashboard summarizes your questions and average sustainability score.",
-            },
-            {
-              icon: Globe,
-              title: "Trusted research",
-              body: "Research mode cites reputable environmental sources so answers stay grounded.",
-            },
-          ].map(({ icon: Icon, title, body }) => (
-            <div key={title} className="rounded-2xl border bg-card p-6 shadow-card">
-              <div className="mb-4 grid h-10 w-10 place-items-center rounded-xl leaf-gradient shadow-glow">
-                <Icon className="h-5 w-5 text-leaf-foreground" />
-              </div>
-              <div className="text-base font-semibold">{title}</div>
-              <p className="mt-1 text-sm text-muted-foreground">{body}</p>
+        <div ref={answerRef} className="scroll-mt-24">
+          {loading ? (
+            <div className="flex items-center justify-center gap-2 rounded-3xl border bg-card p-10 text-sm text-muted-foreground shadow-card">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Looking into that…
             </div>
-          ))}
+          ) : error ? (
+            <div className="flex items-start gap-2 rounded-3xl border bg-card p-6 text-sm text-muted-foreground shadow-card">
+              <AlertCircle className="mt-0.5 h-4 w-4 text-clay" />
+              {error}
+            </div>
+          ) : result ? (
+            <AnswerCard result={result} />
+          ) : null}
         </div>
-      </section>
+
+        <PopularQuestions onPick={handleAsk} />
+        <TipsSection />
+        <HowItWorks />
+        <ModesSection />
+      </div>
     </main>
   );
 }

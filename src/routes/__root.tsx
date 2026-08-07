@@ -77,23 +77,23 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "EcoMind AI — Make Smarter Sustainable Decisions" },
+      { title: "EcoMind — Smarter, More Sustainable Decisions" },
       {
         name: "description",
         content:
-          "Ask EcoMind AI about any choice and get a sustainability score, better alternatives, and trusted sources.",
+          "Ask about any everyday choice and get a sustainability score, practical alternatives, and trusted sources.",
       },
       { name: "author", content: "EcoMind AI" },
-      { property: "og:title", content: "EcoMind AI — Make Smarter Sustainable Decisions" },
+      { property: "og:title", content: "EcoMind — Smarter, More Sustainable Decisions" },
       {
         property: "og:description",
         content:
-          "Ask EcoMind AI about any choice and get a sustainability score, better alternatives, and trusted sources.",
+          "Ask about any everyday choice and get a sustainability score, practical alternatives, and trusted sources.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "EcoMind AI — Make Smarter Sustainable Decisions" },
-      { name: "twitter:description", content: "Ask EcoMind AI about any choice and get a sustainability score, better alternatives, and trusted sources." },
+      { name: "twitter:title", content: "EcoMind — Smarter, More Sustainable Decisions" },
+      { name: "twitter:description", content: "Ask about any everyday choice and get a sustainability score, practical alternatives, and trusted sources." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ff9f202b-6cc6-43f7-b5d4-4b6ade316052/id-preview-8a821895--1dabd096-2d5c-40fe-9d8e-d496c96e8fc7.lovable.app-1784733476217.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ff9f202b-6cc6-43f7-b5d4-4b6ade316052/id-preview-8a821895--1dabd096-2d5c-40fe-9d8e-d496c96e8fc7.lovable.app-1784733476217.png" },
     ],
@@ -104,7 +104,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Newsreader:ital,opt,wght@0,400..700;1,400..700&family=Caveat:wght@500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=DM+Sans:wght@400;500;600&display=swap",
       },
     ],
   }),

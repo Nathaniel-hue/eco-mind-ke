@@ -1,8 +1,8 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Leaf, LayoutDashboard, Info, Settings as SettingsIcon, MessageSquare } from "lucide-react";
+import { Leaf, LayoutDashboard, Info, Settings as SettingsIcon, Home } from "lucide-react";
 
 const items = [
-  { to: "/", label: "Chat", icon: MessageSquare },
+  { to: "/", label: "Home", icon: Home },
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/about", label: "About", icon: Info },
   { to: "/settings", label: "Settings", icon: SettingsIcon },
@@ -14,13 +14,13 @@ export function Nav() {
     <header className="sticky top-0 z-40 glass border-b">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3 sm:px-6">
         <Link to="/" className="flex items-center gap-2">
-          <div className="grid h-9 w-9 place-items-center rounded-xl leaf-gradient shadow-glow">
-            <Leaf className="h-5 w-5 text-leaf-foreground" strokeWidth={2.5} />
+          <div className="grid h-9 w-9 place-items-center rounded-2xl leaf-gradient shadow-glow">
+            <Leaf className="h-5 w-5 text-leaf-foreground" strokeWidth={2.2} />
           </div>
           <div>
-            <div className="text-sm font-semibold leading-tight">EcoMind AI</div>
+            <div className="font-display text-base leading-tight">EcoMind</div>
             <div className="text-[10px] uppercase tracking-widest text-muted-foreground">
-              Sustainability Assistant
+              Sustainable choices
             </div>
           </div>
         </Link>
