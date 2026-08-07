@@ -1,14 +1,29 @@
 import type { SustainabilityScores } from "@/lib/offline-kb";
-import { Leaf, Coins, Users, Star } from "lucide-react";
+import { Leaf, Coins, Users } from "lucide-react";
 
 function scoreColor(v: number) {
-  if (v >= 80) return "oklch(0.15 0 0)";
-  if (v >= 60) return "oklch(0.35 0 0)";
-  if (v >= 40) return "oklch(0.55 0 0)";
-  return "oklch(0.72 0 0)";
+  if (v >= 80) return "var(--leaf)";
+  if (v >= 60) return "var(--leaf-glow)";
+  if (v >= 40) return "var(--clay)";
+  return "var(--earth)";
 }
 
-function Bar({ label, value, icon: Icon }: { label: string; value: number; icon: React.ComponentType<{ className?: string }> }) {
+function scoreLabel(v: number) {
+  if (v >= 80) return "Strongly sustainable";
+  if (v >= 60) return "Generally a good choice";
+  if (v >= 40) return "Mixed impact";
+  return "High impact";
+}
+
+function Bar({
+  label,
+  value,
+  icon: Icon,
+}: {
+  label: string;
+  value: number;
+  icon: React.ComponentType<{ className?: string }>;
+}) {
   return (
     <div>
       <div className="mb-1.5 flex items-center justify-between text-sm">
@@ -16,11 +31,11 @@ function Bar({ label, value, icon: Icon }: { label: string; value: number; icon:
           <Icon className="h-3.5 w-3.5" />
           {label}
         </span>
-        <span className="font-mono font-semibold tabular-nums">{value}%</span>
+        <span className="font-semibold tabular-nums">{value}</span>
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-muted">
         <div
-          className="h-full rounded-full animate-progress"
+          className="animate-progress h-full rounded-full"
           style={{ width: `${value}%`, background: scoreColor(value) }}
         />
       </div>
@@ -30,27 +45,23 @@ function Bar({ label, value, icon: Icon }: { label: string; value: number; icon:
 
 export function ScoreCard({ scores }: { scores: SustainabilityScores }) {
   return (
-    <div className="rounded-2xl border bg-card p-5 shadow-card">
-      <div className="mb-4 flex items-end justify-between">
-        <div>
-          <div className="text-xs uppercase tracking-wider text-muted-foreground">
-            Overall Sustainability
-          </div>
-          <div className="mt-1 flex items-baseline gap-1">
-            <span
-              className="font-display text-5xl leading-none"
-              style={{ color: scoreColor(scores.overall) }}
-            >
-              {scores.overall}
-            </span>
-            <span className="text-sm text-muted-foreground">/100</span>
-          </div>
+    <div className="rounded-3xl border bg-card p-6 shadow-card">
+      <div className="mb-5">
+        <div className="text-xs uppercase tracking-wider text-muted-foreground">
+          Sustainability score
         </div>
-        <div className="grid h-14 w-14 place-items-center rounded-full leaf-gradient shadow-glow">
-          <Star className="h-6 w-6 text-leaf-foreground" strokeWidth={2.5} />
+        <div className="mt-1 flex items-baseline gap-2">
+          <span
+            className="font-display text-5xl leading-none"
+            style={{ color: scoreColor(scores.overall) }}
+          >
+            {scores.overall}
+          </span>
+          <span className="text-sm text-muted-foreground">/ 100</span>
         </div>
+        <div className="mt-1 text-sm text-muted-foreground">{scoreLabel(scores.overall)}</div>
       </div>
-      <div className="space-y-3">
+      <div className="space-y-4">
         <Bar label="Environmental" value={scores.environmental} icon={Leaf} />
         <Bar label="Economic" value={scores.economic} icon={Coins} />
         <Bar label="Social" value={scores.social} icon={Users} />
