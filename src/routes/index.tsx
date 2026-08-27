@@ -48,7 +48,7 @@ function Home() {
       <HeroSection />
 
       <div className="mx-auto max-w-6xl space-y-24 px-5 py-16 sm:px-6 sm:py-24">
-        <section className="-mt-28 sm:-mt-32">
+        <section>
           <AskBar
             onSubmit={handleAsk}
             loading={loading}
