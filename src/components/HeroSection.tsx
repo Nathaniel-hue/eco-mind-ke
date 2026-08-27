@@ -3,7 +3,7 @@ import heroAsset from "@/assets/ecomind-hero-forest.jpg.asset.json";
 export function HeroSection() {
   return (
     <section className="relative">
-      <div className="relative h-[62vh] min-h-[420px] w-full overflow-hidden sm:h-[70vh]">
+      <div className="relative h-[52vh] min-h-[360px] w-full overflow-hidden sm:h-[56vh]">
         <img
           src={heroAsset.url}
           alt="Sunlight streaming through a dense green forest"
