@@ -81,36 +81,38 @@ function Dashboard() {
             <Leaf className="h-5 w-5 text-leaf" />
           </div>
           {catData.length === 0 ? (
-            <div className="grid h-64 place-items-center text-sm text-muted-foreground">
+            <div className="grid h-60 place-items-center text-sm text-muted-foreground">
               Ask a few questions to see categories.
             </div>
           ) : (
-            <div className="h-64">
-              <ResponsiveContainer>
-                <PieChart>
-                  <Pie
-                    data={catData}
-                    dataKey="value"
-                    nameKey="name"
-                    innerRadius={55}
-                    outerRadius={90}
-                    paddingAngle={2}
-                  >
-                    {catData.map((_, i) => (
-                      <Cell key={i} fill={COLORS[i % COLORS.length]} />
-                    ))}
-                  </Pie>
-                  <Tooltip
-                    contentStyle={{
-                      background: "var(--card)",
-                      border: "1px solid var(--border)",
-                      borderRadius: 12,
-                      fontSize: 12,
-                    }}
-                  />
-                </PieChart>
-              </ResponsiveContainer>
-              <div className="mt-2 flex flex-wrap justify-center gap-3 text-xs">
+            <div>
+              <div className="h-60">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={catData}
+                      dataKey="value"
+                      nameKey="name"
+                      innerRadius="55%"
+                      outerRadius="85%"
+                      paddingAngle={2}
+                    >
+                      {catData.map((_, i) => (
+                        <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip
+                      contentStyle={{
+                        background: "var(--card)",
+                        border: "1px solid var(--border)",
+                        borderRadius: 12,
+                        fontSize: 12,
+                      }}
+                    />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+              <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs">
                 {catData.map((c, i) => (
                   <span key={c.name} className="inline-flex items-center gap-1.5">
                     <span
