@@ -1,7 +1,5 @@
 # Roadmap
 
-## In progress
-- [ ] Fix dashboard "Question categories / Where you focus" card: donut chart is clipped (top/bottom cut off) and the legend below it is cut off / cramped. Restructure so the chart has a properly sized container and the legend sits outside it, fully visible.
-
 ## Done
+- [x] Fix dashboard "Question categories / Where you focus" card: donut now uses percentage radii (scales to any card width, never clips) and the legend sits outside the fixed-height chart area so the card grows to fit it. Verified at 1280px, 480px, and 340px viewports.
 - (see chat history) EcoMind platform redesign, hero separation fix, leaf favicon.
