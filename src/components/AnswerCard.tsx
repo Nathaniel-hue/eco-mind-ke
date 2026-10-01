@@ -68,7 +68,7 @@ export function AnswerCard({ result }: { result: AskResult }) {
       </article>
 
       <aside className="space-y-6">
-        <ScoreCard scores={data.scores} />
+        <ScoreCard scores={data.scores} na={data.relevant === false} />
         {data.tips?.length ? (
           <div className="rounded-3xl border bg-card p-6 shadow-card">
             <div className="mb-3 flex items-center gap-2 text-sm font-semibold">

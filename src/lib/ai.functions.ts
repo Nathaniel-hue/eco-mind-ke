@@ -9,6 +9,7 @@ const InputSchema = z.object({
 });
 
 const AnswerSchema = z.object({
+  relevant: z.boolean(),
   answer: z.string(),
   scores: z.object({
     overall: z.number(),
@@ -32,6 +33,8 @@ export const askSustainability = createServerFn({ method: "POST" })
     const model = gateway("google/gemini-3.6-flash");
 
     const systemPrompt = `You are EcoMind, a sustainability researcher. Write like a thoughtful human — plain language, first person occasionally, no corporate hedging, no "As an AI" phrasing, no emoji.
+
+FIRST decide if the question is about the sustainability or environmental impact of a decision, habit, purchase, product or lifestyle choice. If it is NOT (e.g. math, coding, trivia, celebrities, general chit-chat), set "relevant" to false and fill other fields with empty/zero values. Otherwise set "relevant" to true.
 
 Synthesize what you know from three kinds of sources and be explicit about it:
 1. Wikipedia articles on the relevant topics
@@ -61,12 +64,12 @@ Use real, plausible URLs — never fabricate obscure links.`;
         prompt: data.question,
         output: Output.object({ schema: AnswerSchema }),
       });
-      return result.output;
+      return finalize(result.output);
     } catch (error) {
       if (NoObjectGeneratedError.isInstance(error)) {
         try {
           const parsed = JSON.parse(error.text ?? "{}");
-          return AnswerSchema.parse(parsed);
+          return finalize(AnswerSchema.parse(parsed));
         } catch {
           throw new Error("The AI response could not be parsed. Please try again.");
         }
@@ -74,3 +77,16 @@ Use real, plausible URLs — never fabricate obscure links.`;
       throw error;
     }
   });
+
+const OFF_TOPIC = {
+  relevant: false,
+  answer: "I am not able to answer that.",
+  scores: { overall: 0, environmental: 0, economic: 0, social: 0 },
+  alternatives: [],
+  tips: [],
+  sources: [],
+};
+
+function finalize(out: z.infer<typeof AnswerSchema>) {
+  return out.relevant === false ? OFF_TOPIC : out;
+}

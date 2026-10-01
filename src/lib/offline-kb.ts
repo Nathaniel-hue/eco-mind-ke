@@ -14,6 +14,7 @@ export type SustainabilityAnswer = {
   tips: string[];
   sources?: { title: string; url: string }[];
   category?: string;
+  relevant?: boolean;
 };
 
 export type OfflineEntry = {
