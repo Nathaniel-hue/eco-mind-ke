@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { defaultSettings, loadSettings, saveSettings, type Settings } from "@/lib/chat-storage";
+import { defaultSettings, loadSettings, saveSettings, saveThreads, type Settings } from "@/lib/chat-storage";
 import { Moon, Sun, Trash2, WifiOff, Palette, Check } from "lucide-react";
 
 export const Route = createFileRoute("/settings")({
@@ -43,7 +43,7 @@ function SettingsPage() {
 
   function clearHistory() {
     if (!confirm("Delete all conversation history? This cannot be undone.")) return;
-    localStorage.removeItem("ecomind.threads");
+    saveThreads([]);
     alert("History cleared.");
   }
 

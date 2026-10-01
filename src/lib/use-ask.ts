@@ -28,6 +28,12 @@ export function useAsk() {
   useEffect(() => {
     setOfflineOnly(loadSettings().offlineOnly);
     setHistory(loadThreads());
+    const onSync = () => {
+      setOfflineOnly(loadSettings().offlineOnly);
+      setHistory(loadThreads());
+    };
+    window.addEventListener("ecomind:sync", onSync);
+    return () => window.removeEventListener("ecomind:sync", onSync);
   }, []);
 
   const persist = useCallback((r: AskResult) => {
