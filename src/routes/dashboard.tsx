@@ -28,6 +28,9 @@ function Dashboard() {
   const [threads, setThreads] = useState<Thread[]>([]);
   useEffect(() => {
     setThreads(loadThreads());
+    const onSync = () => setThreads(loadThreads());
+    window.addEventListener("ecomind:sync", onSync);
+    return () => window.removeEventListener("ecomind:sync", onSync);
   }, []);
 
   const allMessages = threads.flatMap((t) => t.messages);

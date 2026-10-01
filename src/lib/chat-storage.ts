@@ -44,6 +44,7 @@ export function loadThreads(): Thread[] {
 export function saveThreads(threads: Thread[]) {
   if (typeof window === "undefined") return;
   localStorage.setItem(THREADS_KEY, JSON.stringify(threads));
+  void import("./cloud-sync").then((m) => m.pushToCloud());
 }
 
 export function loadSettings(): Settings {
@@ -59,6 +60,7 @@ export function loadSettings(): Settings {
 export function saveSettings(s: Settings) {
   if (typeof window === "undefined") return;
   localStorage.setItem(SETTINGS_KEY, JSON.stringify(s));
+  void import("./cloud-sync").then((m) => m.pushToCloud());
 }
 
 export function newId() {
