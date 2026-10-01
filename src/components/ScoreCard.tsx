@@ -21,7 +21,7 @@ function Bar({
   icon: Icon,
 }: {
   label: string;
-  value: number;
+  value: number | null;
   icon: React.ComponentType<{ className?: string }>;
 }) {
   return (
@@ -31,19 +31,19 @@ function Bar({
           <Icon className="h-3.5 w-3.5" />
           {label}
         </span>
-        <span className="font-semibold tabular-nums">{value}</span>
+        <span className="font-semibold tabular-nums">{value ?? "N/A"}</span>
       </div>
       <div className="h-2 overflow-hidden rounded-full bg-muted">
         <div
           className="animate-progress h-full rounded-full"
-          style={{ width: `${value}%`, background: scoreColor(value) }}
+          style={{ width: `${value ?? 0}%`, background: scoreColor(value ?? 0) }}
         />
       </div>
     </div>
   );
 }
 
-export function ScoreCard({ scores }: { scores: SustainabilityScores }) {
+export function ScoreCard({ scores, na = false }: { scores: SustainabilityScores; na?: boolean }) {
   return (
     <div className="rounded-3xl border bg-card p-6 shadow-card">
       <div className="mb-5">
@@ -53,18 +53,18 @@ export function ScoreCard({ scores }: { scores: SustainabilityScores }) {
         <div className="mt-1 flex items-baseline gap-2">
           <span
             className="font-display text-5xl leading-none"
-            style={{ color: scoreColor(scores.overall) }}
+            style={{ color: na ? undefined : scoreColor(scores.overall) }}
           >
-            {scores.overall}
+            {na ? "N/A" : scores.overall}
           </span>
-          <span className="text-sm text-muted-foreground">/ 100</span>
+          {na ? null : <span className="text-sm text-muted-foreground">/ 100</span>}
         </div>
-        <div className="mt-1 text-sm text-muted-foreground">{scoreLabel(scores.overall)}</div>
+        <div className="mt-1 text-sm text-muted-foreground">{na ? "Not a sustainability question" : scoreLabel(scores.overall)}</div>
       </div>
       <div className="space-y-4">
-        <Bar label="Environmental" value={scores.environmental} icon={Leaf} />
-        <Bar label="Economic" value={scores.economic} icon={Coins} />
-        <Bar label="Social" value={scores.social} icon={Users} />
+        <Bar label="Environmental" value={na ? null : scores.environmental} icon={Leaf} />
+        <Bar label="Economic" value={na ? null : scores.economic} icon={Coins} />
+        <Bar label="Social" value={na ? null : scores.social} icon={Users} />
       </div>
     </div>
   );

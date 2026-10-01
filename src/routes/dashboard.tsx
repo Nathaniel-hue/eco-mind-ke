@@ -32,7 +32,7 @@ function Dashboard() {
 
   const allMessages = threads.flatMap((t) => t.messages);
   const assistantMsgs = allMessages.filter((m) => m.role === "assistant");
-  const withScores = assistantMsgs.filter((m) => m.data);
+  const withScores = assistantMsgs.filter((m) => m.data && m.data.relevant !== false);
   const avg =
     withScores.length > 0
       ? Math.round(
