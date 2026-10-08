@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { Leaf, LayoutDashboard, Info, Settings as SettingsIcon, Home } from "lucide-react";
+import { AccountMenu } from "./AccountMenu";
 
 const items = [
   { to: "/", label: "Home", icon: Home },
@@ -43,6 +44,7 @@ export function Nav() {
               </Link>
             );
           })}
+          <AccountMenu />
         </nav>
       </div>
     </header>
