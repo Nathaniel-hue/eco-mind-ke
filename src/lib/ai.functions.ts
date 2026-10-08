@@ -84,6 +84,8 @@ Use real, plausible URLs — never fabricate obscure links.`;
 
 const OFF_TOPIC = {
   relevant: false,
+  verdict: "N/A",
+  quickReason: "This is not a sustainability question.",
   answer: "I am not able to answer that.",
   scores: { overall: 0, environmental: 0, economic: 0, social: 0 },
   alternatives: [],
