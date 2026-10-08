@@ -21,6 +21,14 @@ export function AnswerCard({ result }: { result: AskResult }) {
           {data.category ? <span className="opacity-70">· {data.category}</span> : null}
         </div>
         <h2 className="mt-4 font-display text-2xl sm:text-3xl">{question}</h2>
+        {data.relevant !== false && data.verdict ? (
+          <div className="mt-4 rounded-2xl bg-accent/60 px-4 py-3">
+            <div className="font-display text-lg text-accent-foreground">{data.verdict}</div>
+            {data.quickReason ? (
+              <p className="mt-1 text-sm text-foreground/75">{data.quickReason}</p>
+            ) : null}
+          </div>
+        ) : null}
         <div className="mt-4 space-y-4 text-[15px] leading-relaxed text-foreground/85">
           {data.answer.split(/\n{2,}/).map((p, i) => (
             <p key={i}>{p}</p>

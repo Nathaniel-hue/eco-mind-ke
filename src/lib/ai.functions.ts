@@ -10,6 +10,8 @@ const InputSchema = z.object({
 
 const AnswerSchema = z.object({
   relevant: z.boolean(),
+  verdict: z.string(),
+  quickReason: z.string(),
   answer: z.string(),
   scores: z.object({
     overall: z.number(),
@@ -41,7 +43,9 @@ Synthesize what you know from three kinds of sources and be explicit about it:
 2. Top Google search results from reputable outlets (news, journals, government agencies, NGOs)
 3. ChatGPT-style general reasoning to weigh the tradeoffs
 
-In "answer", give a 2-4 paragraph explanation in warm, human prose (markdown fine). Mention offhand which of the three lenses shaped the take (e.g. "Wikipedia's article on X notes…", "a quick Google turns up…", "reasoning it through…").
+In "verdict", give the quick answer in 2-8 words (e.g. "Yes, but with care", "Mostly yes", "Not really"). In "quickReason", give ONE short sentence explaining why — this is what someone in a hurry reads.
+
+In "answer", give a 1-3 paragraph explanation in warm, human prose (markdown fine). Keep it SHORT for simple factual questions like "Is dog poop compostable?" — a paragraph or two is plenty. Save longer answers for genuinely complex tradeoffs. Mention offhand which of the three lenses shaped the take (e.g. "Wikipedia's article on X notes…", "a quick Google turns up…", "reasoning it through…").
 
 Score each dimension 0-100 (100 = highly sustainable):
 - environmental: ecological footprint, emissions, resource use
@@ -80,6 +84,8 @@ Use real, plausible URLs — never fabricate obscure links.`;
 
 const OFF_TOPIC = {
   relevant: false,
+  verdict: "N/A",
+  quickReason: "This is not a sustainability question.",
   answer: "I am not able to answer that.",
   scores: { overall: 0, environmental: 0, economic: 0, social: 0 },
   alternatives: [],

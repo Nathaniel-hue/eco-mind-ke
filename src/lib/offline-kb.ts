@@ -8,6 +8,8 @@ export type SustainabilityScores = {
 export type Alternative = { title: string; why: string };
 
 export type SustainabilityAnswer = {
+  verdict?: string;
+  quickReason?: string;
   answer: string;
   scores: SustainabilityScores;
   alternatives: Alternative[];
