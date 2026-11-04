@@ -101,7 +101,7 @@ function Dashboard() {
                       paddingAngle={2}
                     >
                       {catData.map((_, i) => (
-                        <Cell key={i} fill={COLORS[i % COLORS.length]} />
+                        <Cell key={i} style={{ fill: COLORS[i % COLORS.length] }} />
                       ))}
                     </Pie>
                     <Tooltip
