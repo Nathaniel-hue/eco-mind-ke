@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { defaultSettings, loadSettings, saveSettings, saveThreads, type Settings } from "@/lib/chat-storage";
-import { Moon, Sun, Trash2, WifiOff, Palette, Check } from "lucide-react";
+import { applyAccentHue } from "@/lib/apply-theme";
+import { Moon, Sun, Trash2, WifiOff, Palette } from "lucide-react";
 
 export const Route = createFileRoute("/settings")({
   head: () => ({
@@ -14,13 +15,6 @@ export const Route = createFileRoute("/settings")({
   }),
   component: SettingsPage,
 });
-
-const ACCENTS = [
-  { name: "emerald", value: "oklch(0.62 0.17 150)" },
-  { name: "ocean", value: "oklch(0.65 0.14 220)" },
-  { name: "amber", value: "oklch(0.75 0.15 70)" },
-  { name: "rose", value: "oklch(0.7 0.2 20)" },
-];
 
 function SettingsPage() {
   const [settings, setSettings] = useState<Settings>(defaultSettings);
@@ -36,6 +30,9 @@ function SettingsPage() {
     saveSettings(next);
     if (patch.theme) {
       document.documentElement.classList.toggle("dark", patch.theme === "dark");
+    }
+    if (patch.accent !== undefined) {
+      applyAccentHue(patch.accent);
     }
     setSaved(true);
     setTimeout(() => setSaved(false), 1200);
@@ -74,24 +71,25 @@ function SettingsPage() {
           </div>
         </Section>
 
-        <Section title="Accent color" icon={Palette}>
-          <div className="flex flex-wrap gap-2">
-            {ACCENTS.map((a) => (
-              <button
-                key={a.name}
-                onClick={() => update({ accent: a.name })}
-                className={`grid h-10 w-10 place-items-center rounded-full border-2 transition ${
-                  settings.accent === a.name ? "border-foreground scale-110" : "border-transparent"
-                }`}
-                style={{ background: a.value }}
-                aria-label={a.name}
-              >
-                {settings.accent === a.name && <Check className="h-4 w-4 text-white" />}
-              </button>
-            ))}
+        <Section title="Accent colour" icon={Palette}>
+          <div className="flex items-center gap-4">
+            <span
+              className="h-10 w-10 shrink-0 rounded-full border-2 border-foreground/15 shadow-card"
+              style={{ background: `oklch(0.62 0.17 ${settings.accent})` }}
+              aria-hidden
+            />
+            <input
+              type="range"
+              min={0}
+              max={359}
+              value={settings.accent}
+              onChange={(e) => update({ accent: Number(e.target.value) })}
+              className="hue-slider w-full"
+              aria-label="Accent colour"
+            />
           </div>
-          <p className="mt-2 text-xs text-muted-foreground">
-            Accent selection is saved for future theming.
+          <p className="mt-3 text-xs text-muted-foreground">
+            Drag across the full colour spectrum — buttons, charts and highlights update instantly and are saved.
           </p>
         </Section>
 
