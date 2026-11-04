@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { defaultSettings, loadSettings, saveSettings, saveThreads, type Settings } from "@/lib/chat-storage";
-import { Moon, Sun, Trash2, WifiOff, Palette, Check } from "lucide-react";
+import { applyAccentHue } from "@/lib/apply-theme";
+import { Moon, Sun, Trash2, WifiOff, Palette } from "lucide-react";
 
 export const Route = createFileRoute("/settings")({
   head: () => ({
@@ -14,13 +15,6 @@ export const Route = createFileRoute("/settings")({
   }),
   component: SettingsPage,
 });
-
-const ACCENTS = [
-  { name: "emerald", value: "oklch(0.62 0.17 150)" },
-  { name: "ocean", value: "oklch(0.65 0.14 220)" },
-  { name: "amber", value: "oklch(0.75 0.15 70)" },
-  { name: "rose", value: "oklch(0.7 0.2 20)" },
-];
 
 function SettingsPage() {
   const [settings, setSettings] = useState<Settings>(defaultSettings);
@@ -36,6 +30,9 @@ function SettingsPage() {
     saveSettings(next);
     if (patch.theme) {
       document.documentElement.classList.toggle("dark", patch.theme === "dark");
+    }
+    if (patch.accent !== undefined) {
+      applyAccentHue(patch.accent);
     }
     setSaved(true);
     setTimeout(() => setSaved(false), 1200);
