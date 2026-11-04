@@ -71,7 +71,9 @@ export function loadSettings(): Settings {
   if (typeof window === "undefined") return defaultSettings;
   try {
     const raw = localStorage.getItem(SETTINGS_KEY);
-    return raw ? { ...defaultSettings, ...JSON.parse(raw) } : defaultSettings;
+    if (!raw) return defaultSettings;
+    const parsed = JSON.parse(raw) as Partial<Settings>;
+    return { ...defaultSettings, ...parsed, accent: normalizeAccent(parsed.accent) };
   } catch {
     return defaultSettings;
   }
