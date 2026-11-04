@@ -22,7 +22,7 @@ export const Route = createFileRoute("/dashboard")({
   component: Dashboard,
 });
 
-const COLORS = ["oklch(0.62 0.17 150)", "oklch(0.72 0.12 220)", "oklch(0.75 0.15 90)", "oklch(0.55 0.09 60)", "oklch(0.65 0.2 30)", "oklch(0.7 0.18 300)"];
+const COLORS = ["var(--chart-1)", "var(--chart-2)", "oklch(0.75 0.15 90)", "oklch(0.55 0.09 60)", "oklch(0.65 0.2 30)", "oklch(0.7 0.18 300)"];
 
 function Dashboard() {
   const [threads, setThreads] = useState<Thread[]>([]);
