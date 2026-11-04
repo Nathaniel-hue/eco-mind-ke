@@ -174,3 +174,50 @@
 }
 .animate-fade-up { animation: fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
 .animate-progress { animation: progress-fill 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+/* Full-spectrum accent hue slider (Settings) */
+input[type="range"].hue-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 16px;
+  border-radius: 999px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  background: linear-gradient(
+    90deg,
+    oklch(0.65 0.2 0),
+    oklch(0.75 0.18 60),
+    oklch(0.78 0.16 120),
+    oklch(0.75 0.15 180),
+    oklch(0.65 0.19 240),
+    oklch(0.62 0.2 300),
+    oklch(0.65 0.2 360)
+  );
+}
+input[type="range"].hue-slider::-webkit-slider-runnable-track {
+  background: transparent;
+  height: 16px;
+}
+input[type="range"].hue-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 24px;
+  width: 24px;
+  margin-top: -4px;
+  border-radius: 50%;
+  background: var(--leaf);
+  border: 3px solid white;
+  box-shadow: 0 1px 4px oklch(0 0 0 / 0.35);
+}
+input[type="range"].hue-slider::-moz-range-track {
+  background: transparent;
+  height: 16px;
+}
+input[type="range"].hue-slider::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+  background: var(--leaf);
+  border: 3px solid white;
+  box-shadow: 0 1px 4px oklch(0 0 0 / 0.35);
+}

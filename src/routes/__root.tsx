@@ -130,13 +130,10 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function ThemeInit() {
   useEffect(() => {
-    try {
-      const raw = localStorage.getItem("ecomind.settings");
-      const theme = raw ? (JSON.parse(raw).theme as string) : "light";
-      document.documentElement.classList.toggle("dark", theme === "dark");
-    } catch {
-      // ignore
-    }
+    applyTheme();
+    const onSync = () => applyTheme();
+    window.addEventListener("ecomind:sync", onSync);
+    return () => window.removeEventListener("ecomind:sync", onSync);
   }, []);
   return null;
 }
