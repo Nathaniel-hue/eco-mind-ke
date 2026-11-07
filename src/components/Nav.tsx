@@ -1,9 +1,12 @@
 import { Link, useRouterState } from "@tanstack/react-router";
-import { Leaf, LayoutDashboard, Info, Settings as SettingsIcon, Home } from "lucide-react";
+import { Leaf, LayoutDashboard, Info, Settings as SettingsIcon, Home, Newspaper, Target } from "lucide-react";
 import { AccountMenu } from "./AccountMenu";
+import { NavMascot } from "./Mascot";
 
 const items = [
   { to: "/", label: "Home", icon: Home },
+  { to: "/news", label: "News", icon: Newspaper },
+  { to: "/quests", label: "Quests", icon: Target },
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/about", label: "About", icon: Info },
   { to: "/settings", label: "Settings", icon: SettingsIcon },
@@ -44,6 +47,7 @@ export function Nav() {
               </Link>
             );
           })}
+          <NavMascot />
           <AccountMenu />
         </nav>
       </div>
