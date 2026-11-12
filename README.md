@@ -1,14 +1,20 @@
-# Welcome to your Lovable project
+# EcoMind AI
+
+EcoMind AI helps people track their personal sustainability and discover ways to reduce their environmental impact.
+
+It evaluates lifestyle data and offers insights into specific choices. Users can ask sustainability questions, view ecological news, and complete daily eco quests with progressive Sprout growth rewards. An offline sorting game offers another way to engage with sustainability. Email and Google sign-in provide access to saved history and settings across devices.
 
 This project was built with [Lovable](https://lovable.dev).
 
+**Live app**: https://eco-mind-ke.lovable.app
+
 ## Build with Lovable
 
-Open your project in the [Lovable editor](https://lovable.dev) and keep building.
+Continue developing this project in the [Lovable editor](https://lovable.dev/projects/1dabd096-2d5c-40fe-9d8e-d496c96e8fc7).
 
 - **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: connect the project to GitHub and every change made in Lovable is committed straight to your repository.
-- **Full ownership**: this code is yours. Push to your repository and your changes sync back into Lovable, ready for your next prompt.
+- **Stay in sync**: every change made in Lovable is committed straight to this repository.
+- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
 
 ## Development
 
@@ -20,10 +26,3 @@ cd <repository-name>
 npm i
 npm run dev
 ```
-
-## Built with
-
-- TanStack Start
-- TypeScript
-- React
-- Tailwind CSS
