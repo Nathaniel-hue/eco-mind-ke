@@ -134,6 +134,9 @@ export const SORT_ITEMS: SortItem[] = groups.map(([bin, name, emoji, tip]) => ({
 export function scoreChoice(score: number, streak: number, correct: boolean) {
   return correct ? { score: score + 10, streak: streak + 1 } : { score, streak: 0 };
 }
+export function evaluateChoice(item: SortItem, chosen: Bin) {
+  return { correct: chosen === item.bin, chosen, correctBin: item.bin };
+}
 export function shuffledRound(): SortItem[] {
   const items = [...SORT_ITEMS];
   for (let i = items.length - 1; i > 0; i--) {

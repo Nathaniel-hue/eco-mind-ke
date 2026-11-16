@@ -13,3 +13,5 @@
 - Public news comes from fixed RSS sources through a server function with a two-hour query cache; external-feed failures return labeled background reading rather than invented headlines.
 - EcoSort rules live in a browser-safe data module; production offline caching covers only public game/quest pages and bundled assets, never auth or account requests.
 - Sitemap inventory derives from required route staticData decisions so future public pages cannot silently be omitted.
+
+- Classic-inspired action games share a dynamically imported Phaser engine; keep browser-only engine imports out of SSR and puzzle rules in a browser-safe module so all arcade games remain offline-capable.

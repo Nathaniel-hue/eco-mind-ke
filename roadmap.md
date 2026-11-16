@@ -1,5 +1,10 @@
 # Roadmap
 
+## Current arcade update
+- [x] Make incorrect sorting answers unmistakable and verify scoring.
+- [x] Add ten playable ecology-themed games with touch controls and offline play.
+- [x] Test game flows and screen sizes.
+
 ## Completed
 - [x] Preserve and sync account quest progress across sign-out and browsers.
 - [x] Replace handpicked Eco News with a current, sourced online feed.
