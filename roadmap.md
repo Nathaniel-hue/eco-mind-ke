@@ -5,6 +5,10 @@
 - [x] Add ten playable ecology-themed games with touch controls and offline play.
 - [x] Test game flows and screen sizes.
 
+## Next generation
+- [x] Phase 1: EcoFactCheck, EcoEvidence, EcoTrade-offs, saved investigations.
+- [ ] Phase 2: EcoSim, EcoTrace. Phase 3: organisations, EcoProjects, EcoBenchmark, EcoAudit. Phase 4: EcoKnowledge, EcoWatch, EcoRisk, EcoCompliance.
+
 ## Completed
 - [x] Preserve and sync account quest progress across sign-out and browsers.
 - [x] Replace handpicked Eco News with a current, sourced online feed.

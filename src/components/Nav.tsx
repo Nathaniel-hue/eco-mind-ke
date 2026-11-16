@@ -8,6 +8,7 @@ import {
   Newspaper,
   Target,
   Gamepad2,
+  Microscope,
 } from "lucide-react";
 import { AccountMenu } from "./AccountMenu";
 import { NavMascot } from "./Mascot";
@@ -17,6 +18,7 @@ const items = [
   { to: "/news", label: "News", icon: Newspaper },
   { to: "/quests", label: "Quests", icon: Target },
   { to: "/game", label: "Game", icon: Gamepad2 },
+  { to: "/intelligence", label: "Intelligence", icon: Microscope },
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/about", label: "About", icon: Info },
   { to: "/settings", label: "Settings", icon: SettingsIcon },
@@ -43,7 +45,7 @@ export function Nav() {
           className="flex w-full min-w-0 items-center justify-between gap-0 lg:w-auto lg:justify-start lg:gap-1"
         >
           {items.map((item) => {
-            const active = path === item.to;
+            const active = item.to === "/" ? path === "/" : path.startsWith(item.to);
             const Icon = item.icon;
             return (
               <Link

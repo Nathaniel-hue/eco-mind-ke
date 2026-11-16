@@ -8,6 +8,13 @@
       "when": 1794853296138,
       "tag": "0000_save_quest_progress",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1794855945006,
+      "tag": "0001_investigations",
+      "breakpoints": true
     }
   ]
 }

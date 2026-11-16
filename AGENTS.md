@@ -15,3 +15,4 @@
 - Sitemap inventory derives from required route staticData decisions so future public pages cannot silently be omitted.
 
 - Classic-inspired action games share a dynamically imported Phaser engine; keep browser-only engine imports out of SSR and puzzle rules in a browser-safe module so all arcade games remain offline-capable.
+- Intelligence Centre modules share one evidence service (OpenAlex/Crossref, server-only) and label every output as published record vs AI reasoning; claims get no rating beyond 'Not enough evidence' without records.

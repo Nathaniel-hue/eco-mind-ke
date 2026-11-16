@@ -14,6 +14,36 @@ export type Database = {
   }
   public: {
     Tables: {
+      investigations: {
+        Row: {
+          created_at: string
+          id: string
+          input: Json
+          kind: string
+          result: Json
+          title: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          input?: Json
+          kind: string
+          result?: Json
+          title: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          input?: Json
+          kind?: string
+          result?: Json
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null

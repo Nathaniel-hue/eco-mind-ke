@@ -14,10 +14,15 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as GameRouteImport } from './routes/game'
+import { Route as IntelligenceRouteImport } from './routes/intelligence'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as QuestsRouteImport } from './routes/quests'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as IntelligenceIndexRouteImport } from './routes/intelligence.index'
+import { Route as IntelligenceEvidenceRouteImport } from './routes/intelligence.evidence'
+import { Route as IntelligenceFactcheckRouteImport } from './routes/intelligence.factcheck'
+import { Route as IntelligenceTradeoffsRouteImport } from './routes/intelligence.tradeoffs'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -44,6 +49,11 @@ const GameRoute = GameRouteImport.update({
   path: '/game',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IntelligenceRoute = IntelligenceRouteImport.update({
+  id: '/intelligence',
+  path: '/intelligence',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const NewsRoute = NewsRouteImport.update({
   id: '/news',
   path: '/news',
@@ -64,6 +74,26 @@ const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IntelligenceIndexRoute = IntelligenceIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceEvidenceRoute = IntelligenceEvidenceRouteImport.update({
+  id: '/evidence',
+  path: '/evidence',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceFactcheckRoute = IntelligenceFactcheckRouteImport.update({
+  id: '/factcheck',
+  path: '/factcheck',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
+const IntelligenceTradeoffsRoute = IntelligenceTradeoffsRouteImport.update({
+  id: '/tradeoffs',
+  path: '/tradeoffs',
+  getParentRoute: () => IntelligenceRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -71,10 +101,15 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/dashboard': typeof DashboardRoute
   '/game': typeof GameRoute
+  '/intelligence': typeof IntelligenceRouteWithChildren
   '/news': typeof NewsRoute
   '/quests': typeof QuestsRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/intelligence/evidence': typeof IntelligenceEvidenceRoute
+  '/intelligence/factcheck': typeof IntelligenceFactcheckRoute
+  '/intelligence/tradeoffs': typeof IntelligenceTradeoffsRoute
+  '/intelligence/': typeof IntelligenceIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -86,6 +121,10 @@ export interface FileRoutesByTo {
   '/quests': typeof QuestsRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/intelligence/evidence': typeof IntelligenceEvidenceRoute
+  '/intelligence/factcheck': typeof IntelligenceFactcheckRoute
+  '/intelligence/tradeoffs': typeof IntelligenceTradeoffsRoute
+  '/intelligence': typeof IntelligenceIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -94,10 +133,15 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/dashboard': typeof DashboardRoute
   '/game': typeof GameRoute
+  '/intelligence': typeof IntelligenceRouteWithChildren
   '/news': typeof NewsRoute
   '/quests': typeof QuestsRoute
   '/settings': typeof SettingsRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/intelligence/evidence': typeof IntelligenceEvidenceRoute
+  '/intelligence/factcheck': typeof IntelligenceFactcheckRoute
+  '/intelligence/tradeoffs': typeof IntelligenceTradeoffsRoute
+  '/intelligence/': typeof IntelligenceIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -107,10 +151,15 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/game'
+    | '/intelligence'
     | '/news'
     | '/quests'
     | '/settings'
     | '/sitemap.xml'
+    | '/intelligence/evidence'
+    | '/intelligence/factcheck'
+    | '/intelligence/tradeoffs'
+    | '/intelligence/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -122,6 +171,10 @@ export interface FileRouteTypes {
     | '/quests'
     | '/settings'
     | '/sitemap.xml'
+    | '/intelligence/evidence'
+    | '/intelligence/factcheck'
+    | '/intelligence/tradeoffs'
+    | '/intelligence'
   id:
     | '__root__'
     | '/'
@@ -129,10 +182,15 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/game'
+    | '/intelligence'
     | '/news'
     | '/quests'
     | '/settings'
     | '/sitemap.xml'
+    | '/intelligence/evidence'
+    | '/intelligence/factcheck'
+    | '/intelligence/tradeoffs'
+    | '/intelligence/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -141,6 +199,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   DashboardRoute: typeof DashboardRoute
   GameRoute: typeof GameRoute
+  IntelligenceRoute: typeof IntelligenceRouteWithChildren
   NewsRoute: typeof NewsRoute
   QuestsRoute: typeof QuestsRoute
   SettingsRoute: typeof SettingsRoute
@@ -184,6 +243,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GameRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/intelligence': {
+      id: '/intelligence'
+      path: '/intelligence'
+      fullPath: '/intelligence'
+      preLoaderRoute: typeof IntelligenceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/news': {
       id: '/news'
       path: '/news'
@@ -212,8 +278,54 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/intelligence/': {
+      id: '/intelligence/'
+      path: '/'
+      fullPath: '/intelligence/'
+      preLoaderRoute: typeof IntelligenceIndexRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/evidence': {
+      id: '/intelligence/evidence'
+      path: '/evidence'
+      fullPath: '/intelligence/evidence'
+      preLoaderRoute: typeof IntelligenceEvidenceRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/factcheck': {
+      id: '/intelligence/factcheck'
+      path: '/factcheck'
+      fullPath: '/intelligence/factcheck'
+      preLoaderRoute: typeof IntelligenceFactcheckRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
+    '/intelligence/tradeoffs': {
+      id: '/intelligence/tradeoffs'
+      path: '/tradeoffs'
+      fullPath: '/intelligence/tradeoffs'
+      preLoaderRoute: typeof IntelligenceTradeoffsRouteImport
+      parentRoute: typeof IntelligenceRoute
+    }
   }
 }
+
+interface IntelligenceRouteChildren {
+  IntelligenceEvidenceRoute: typeof IntelligenceEvidenceRoute
+  IntelligenceFactcheckRoute: typeof IntelligenceFactcheckRoute
+  IntelligenceTradeoffsRoute: typeof IntelligenceTradeoffsRoute
+  IntelligenceIndexRoute: typeof IntelligenceIndexRoute
+}
+
+const IntelligenceRouteChildren: IntelligenceRouteChildren = {
+  IntelligenceEvidenceRoute: IntelligenceEvidenceRoute,
+  IntelligenceFactcheckRoute: IntelligenceFactcheckRoute,
+  IntelligenceTradeoffsRoute: IntelligenceTradeoffsRoute,
+  IntelligenceIndexRoute: IntelligenceIndexRoute,
+}
+
+const IntelligenceRouteWithChildren = IntelligenceRoute._addFileChildren(
+  IntelligenceRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -221,6 +333,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   DashboardRoute: DashboardRoute,
   GameRoute: GameRoute,
+  IntelligenceRoute: IntelligenceRouteWithChildren,
   NewsRoute: NewsRoute,
   QuestsRoute: QuestsRoute,
   SettingsRoute: SettingsRoute,
