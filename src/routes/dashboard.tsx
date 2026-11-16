@@ -1,20 +1,21 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { loadThreads, type Thread } from "@/lib/chat-storage";
-import {
-  PieChart,
-  Pie,
-  Cell,
-  ResponsiveContainer,
-  Tooltip,
-} from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 import { MessageSquare, Leaf, WifiOff, Sparkles, TrendingUp } from "lucide-react";
 
 export const Route = createFileRoute("/dashboard")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Dashboard — EcoMind AI" },
-      { name: "description", content: "Your sustainability activity, scores, and question categories." },
+      {
+        name: "description",
+        content: "Your sustainability activity, scores, and question categories.",
+      },
       { property: "og:title", content: "Dashboard — EcoMind AI" },
       { property: "og:description", content: "Your sustainability activity and scores." },
     ],
@@ -22,7 +23,14 @@ export const Route = createFileRoute("/dashboard")({
   component: Dashboard,
 });
 
-const COLORS = ["var(--chart-1)", "var(--chart-2)", "oklch(0.75 0.15 90)", "oklch(0.55 0.09 60)", "oklch(0.65 0.2 30)", "oklch(0.7 0.18 300)"];
+const COLORS = [
+  "var(--chart-1)",
+  "var(--chart-2)",
+  "oklch(0.75 0.15 90)",
+  "oklch(0.55 0.09 60)",
+  "oklch(0.65 0.2 30)",
+  "oklch(0.7 0.18 300)",
+];
 
 function Dashboard() {
   const [threads, setThreads] = useState<Thread[]>([]);
@@ -178,7 +186,9 @@ function Stat({
         <div className="text-xs uppercase tracking-wider text-muted-foreground">{label}</div>
         <div
           className={`grid h-8 w-8 place-items-center rounded-lg ${
-            tone === "leaf" ? "leaf-gradient text-leaf-foreground" : "bg-accent text-accent-foreground"
+            tone === "leaf"
+              ? "leaf-gradient text-leaf-foreground"
+              : "bg-accent text-accent-foreground"
           }`}
         >
           <Icon className="h-4 w-4" />

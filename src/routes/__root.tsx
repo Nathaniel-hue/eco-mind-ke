@@ -74,6 +74,7 @@ function ErrorComponent({ error, reset }: import("@tanstack/react-router").Error
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -94,9 +95,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "EcoMind — Smarter, More Sustainable Decisions" },
-      { name: "twitter:description", content: "Ask about any everyday choice and get a sustainability score, practical alternatives, and trusted sources." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ff9f202b-6cc6-43f7-b5d4-4b6ade316052/id-preview-8a821895--1dabd096-2d5c-40fe-9d8e-d496c96e8fc7.lovable.app-1784733476217.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ff9f202b-6cc6-43f7-b5d4-4b6ade316052/id-preview-8a821895--1dabd096-2d5c-40fe-9d8e-d496c96e8fc7.lovable.app-1784733476217.png" },
+      {
+        name: "twitter:description",
+        content:
+          "Ask about any everyday choice and get a sustainability score, practical alternatives, and trusted sources.",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -132,6 +135,9 @@ function RootShell({ children }: { children: ReactNode }) {
 function ThemeInit() {
   useEffect(() => {
     applyTheme();
+    if (import.meta.env.PROD && "serviceWorker" in navigator) {
+      void navigator.serviceWorker.register("/offline-worker.js").catch(() => {});
+    }
     const onSync = () => applyTheme();
     window.addEventListener("ecomind:sync", onSync);
     return () => window.removeEventListener("ecomind:sync", onSync);

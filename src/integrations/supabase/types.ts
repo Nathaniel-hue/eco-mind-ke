@@ -40,18 +40,21 @@ export type Database = {
       }
       user_data: {
         Row: {
+          quests: Json
           settings: Json
           threads: Json
           updated_at: string
           user_id: string
         }
         Insert: {
+          quests?: Json
           settings?: Json
           threads?: Json
           updated_at?: string
           user_id: string
         }
         Update: {
+          quests?: Json
           settings?: Json
           threads?: Json
           updated_at?: string

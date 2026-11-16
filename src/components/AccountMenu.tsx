@@ -3,6 +3,7 @@ import { useState } from "react";
 import { LogIn, LogOut } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/lib/use-auth";
+import { flushToCloud } from "@/lib/cloud-sync";
 
 export function AccountMenu() {
   const { user, profile, loading } = useAuth();
@@ -34,7 +35,12 @@ export function AccountMenu() {
         className="grid h-8 w-8 place-items-center overflow-hidden rounded-full border bg-secondary text-sm font-medium"
       >
         {profile?.avatar_url ? (
-          <img src={profile.avatar_url} alt={name} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
+          <img
+            src={profile.avatar_url}
+            alt={name}
+            className="h-full w-full object-cover"
+            referrerPolicy="no-referrer"
+          />
         ) : (
           initial
         )}
@@ -43,11 +49,14 @@ export function AccountMenu() {
         <div className="absolute right-0 mt-2 w-56 rounded-2xl border bg-card p-3 shadow-card">
           <div className="truncate text-sm font-medium">{name}</div>
           <div className="truncate text-xs text-muted-foreground">{user.email}</div>
-          <p className="mt-2 text-xs text-muted-foreground">Your history is saved to your account.</p>
+          <p className="mt-2 text-xs text-muted-foreground">
+            Your history is saved to your account.
+          </p>
           <button
             type="button"
             onClick={async () => {
               setOpen(false);
+              await flushToCloud();
               await supabase.auth.signOut();
             }}
             className="mt-3 flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-sm hover:bg-accent"

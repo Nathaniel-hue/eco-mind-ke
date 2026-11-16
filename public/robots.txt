@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /settings
+Disallow: /auth
+Sitemap: https://eco-mind-ke.lovable.app/sitemap.xml

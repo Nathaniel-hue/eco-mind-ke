@@ -1,12 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { defaultSettings, loadSettings, saveSettings, saveThreads, type Settings } from "@/lib/chat-storage";
+import {
+  defaultSettings,
+  loadSettings,
+  saveSettings,
+  saveThreads,
+  type Settings,
+} from "@/lib/chat-storage";
 import { applyAccentHue } from "@/lib/apply-theme";
 import { Moon, Sun, Trash2, WifiOff, Palette } from "lucide-react";
 
 export const Route = createFileRoute("/settings")({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
+      { name: "robots", content: "noindex" },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "Settings — EcoMind AI" },
       { name: "description", content: "Theme, accent color, offline mode, and history controls." },
       { property: "og:title", content: "Settings — EcoMind AI" },
@@ -59,9 +69,7 @@ function SettingsPage() {
                 key={t}
                 onClick={() => update({ theme: t })}
                 className={`flex items-center justify-center gap-2 rounded-xl border px-4 py-3 text-sm capitalize transition ${
-                  settings.theme === t
-                    ? "border-leaf bg-leaf/10 text-leaf"
-                    : "hover:bg-accent"
+                  settings.theme === t ? "border-leaf bg-leaf/10 text-leaf" : "hover:bg-accent"
                 }`}
               >
                 {t === "dark" ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
@@ -89,7 +97,8 @@ function SettingsPage() {
             />
           </div>
           <p className="mt-3 text-xs text-muted-foreground">
-            Drag across the full colour spectrum — buttons, charts and highlights update instantly and are saved.
+            Drag across the full colour spectrum — buttons, charts and highlights update instantly
+            and are saved.
           </p>
         </Section>
 

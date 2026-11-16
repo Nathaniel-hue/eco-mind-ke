@@ -2,8 +2,11 @@ import { createFileRoute } from "@tanstack/react-router";
 import { AlertTriangle, Lightbulb, Cpu, WifiOff, Globe, Leaf, Rocket } from "lucide-react";
 
 export const Route = createFileRoute("/about")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
       { title: "About EcoMind AI — Science, method, and roadmap" },
       {
         name: "description",
@@ -11,7 +14,10 @@ export const Route = createFileRoute("/about")({
           "How EcoMind AI works: the sustainability problem, our AI-powered solution, offline mode, research mode, environmental impact, and future improvements.",
       },
       { property: "og:title", content: "About EcoMind AI" },
-      { property: "og:description", content: "How EcoMind AI helps people make smarter, greener decisions." },
+      {
+        property: "og:description",
+        content: "How EcoMind AI helps people make smarter, greener decisions.",
+      },
     ],
   }),
   component: About,

@@ -11,6 +11,7 @@ import { useAsk } from "@/lib/use-ask";
 import { Loader2, AlertCircle } from "lucide-react";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "EcoMind — Smarter, More Sustainable Everyday Decisions" },
