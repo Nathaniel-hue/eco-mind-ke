@@ -3,7 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { geoOrthographic, geoPath, geoGraticule10, geoDistance } from "d3-geo";
 import { feature } from "topojson-client";
 import world from "world-atlas/countries-110m.json";
-import { ExternalLink, RotateCw } from "lucide-react";
+import { ArrowDown, ExternalLink, RotateCw } from "lucide-react";
 import { GLOBE_EVENTS, type GlobeEvent } from "@/lib/globe-events";
 import { Button } from "@/components/Button";
 
@@ -32,6 +32,9 @@ function GlobePage() {
   const [filter, setFilter] = useState<"all" | "good" | "bad">("all");
   const [sel, setSel] = useState<GlobeEvent | null>(null);
   const drag = useRef<{ x: number; y: number; r: [number, number] } | null>(null);
+  const overviewRef = useRef<HTMLElement | null>(null);
+
+  const readMore = () => overviewRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
 
   useEffect(() => {
     if (!spin) return;
@@ -81,7 +84,7 @@ function GlobePage() {
           })}
         </svg>
         <aside className="space-y-3">
-          {sel ? <Detail e={sel} /> : <p className="rounded-lg border bg-card p-5 text-sm text-muted-foreground">Select a dot or a story below.</p>}
+          {sel ? <Detail e={sel} onReadMore={readMore} /> : <p className="rounded-lg border bg-card p-5 text-sm text-muted-foreground">Select a dot or a story below.</p>}
           <ul className="max-h-[420px] space-y-2 overflow-y-auto pr-1">
             {events.map((e) => (
               <li key={e.id}>
@@ -94,18 +97,30 @@ function GlobePage() {
           </ul>
         </aside>
       </div>
+      {sel && (
+        <section ref={overviewRef} aria-label="Story overview" className="mt-12 scroll-mt-24 rounded-xl border bg-card p-6 shadow-card sm:p-8">
+          <div className="text-xs uppercase tracking-wider" style={{ color: sel.kind === "good" ? "var(--leaf)" : "var(--destructive)" }}>{sel.kind === "good" ? "Achievement" : "Damage"} · {sel.country}</div>
+          <h2 className="mt-2 text-3xl">{sel.title}</h2>
+          <p className="mt-4 max-w-3xl leading-relaxed text-muted-foreground">{sel.overview}</p>
+          {sel.cause && <p className="mt-4 max-w-3xl text-sm"><strong>Where it comes from:</strong> {sel.cause}</p>}
+          <a href={sel.url} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-1 text-sm text-primary hover:underline">Read the original source: {sel.source} <ExternalLink size={13} /></a>
+        </section>
+      )}
     </main>
   );
 }
 
-function Detail({ e }: { e: GlobeEvent }) {
+function Detail({ e, onReadMore }: { e: GlobeEvent; onReadMore: () => void }) {
   return (
     <article className="rounded-lg border bg-card p-5 shadow-card">
       <div className="text-xs uppercase tracking-wider" style={{ color: e.kind === "good" ? "var(--leaf)" : "var(--destructive)" }}>{e.kind === "good" ? "Achievement" : "Damage"} · {e.country}</div>
       <h2 className="mt-2 text-xl">{e.title}</h2>
       <p className="mt-2 text-sm text-muted-foreground">{e.summary}</p>
       {e.cause && <p className="mt-2 text-sm"><strong>Where it comes from:</strong> {e.cause}</p>}
-      <a href={e.url} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center gap-1 text-sm text-primary hover:underline">{e.source} <ExternalLink size={13} /></a>
+      <div className="mt-3 flex flex-wrap items-center gap-3">
+        <Button onClick={onReadMore} className="bg-primary text-primary-foreground">Read more <ArrowDown size={14} /></Button>
+        <a href={e.url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-primary hover:underline">{e.source} <ExternalLink size={13} /></a>
+      </div>
     </article>
   );
 }
