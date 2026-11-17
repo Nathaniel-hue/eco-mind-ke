@@ -14,6 +14,7 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as GameRouteImport } from './routes/game'
+import { Route as GlobeRouteImport } from './routes/globe'
 import { Route as IntelligenceRouteImport } from './routes/intelligence'
 import { Route as NewsRouteImport } from './routes/news'
 import { Route as QuestsRouteImport } from './routes/quests'
@@ -47,6 +48,11 @@ const DashboardRoute = DashboardRouteImport.update({
 const GameRoute = GameRouteImport.update({
   id: '/game',
   path: '/game',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GlobeRoute = GlobeRouteImport.update({
+  id: '/globe',
+  path: '/globe',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IntelligenceRoute = IntelligenceRouteImport.update({
@@ -101,6 +107,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/dashboard': typeof DashboardRoute
   '/game': typeof GameRoute
+  '/globe': typeof GlobeRoute
   '/intelligence': typeof IntelligenceRouteWithChildren
   '/news': typeof NewsRoute
   '/quests': typeof QuestsRoute
@@ -117,6 +124,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/dashboard': typeof DashboardRoute
   '/game': typeof GameRoute
+  '/globe': typeof GlobeRoute
   '/news': typeof NewsRoute
   '/quests': typeof QuestsRoute
   '/settings': typeof SettingsRoute
@@ -133,6 +141,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/dashboard': typeof DashboardRoute
   '/game': typeof GameRoute
+  '/globe': typeof GlobeRoute
   '/intelligence': typeof IntelligenceRouteWithChildren
   '/news': typeof NewsRoute
   '/quests': typeof QuestsRoute
@@ -151,6 +160,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/game'
+    | '/globe'
     | '/intelligence'
     | '/news'
     | '/quests'
@@ -167,6 +177,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/game'
+    | '/globe'
     | '/news'
     | '/quests'
     | '/settings'
@@ -182,6 +193,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/dashboard'
     | '/game'
+    | '/globe'
     | '/intelligence'
     | '/news'
     | '/quests'
@@ -199,6 +211,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   DashboardRoute: typeof DashboardRoute
   GameRoute: typeof GameRoute
+  GlobeRoute: typeof GlobeRoute
   IntelligenceRoute: typeof IntelligenceRouteWithChildren
   NewsRoute: typeof NewsRoute
   QuestsRoute: typeof QuestsRoute
@@ -241,6 +254,13 @@ declare module '@tanstack/react-router' {
       path: '/game'
       fullPath: '/game'
       preLoaderRoute: typeof GameRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/globe': {
+      id: '/globe'
+      path: '/globe'
+      fullPath: '/globe'
+      preLoaderRoute: typeof GlobeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/intelligence': {
@@ -333,6 +353,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   DashboardRoute: DashboardRoute,
   GameRoute: GameRoute,
+  GlobeRoute: GlobeRoute,
   IntelligenceRoute: IntelligenceRouteWithChildren,
   NewsRoute: NewsRoute,
   QuestsRoute: QuestsRoute,

@@ -9,6 +9,7 @@ import {
   Target,
   Gamepad2,
   Microscope,
+  Globe2,
 } from "lucide-react";
 import { AccountMenu } from "./AccountMenu";
 import { NavMascot } from "./Mascot";
@@ -18,6 +19,7 @@ const items = [
   { to: "/news", label: "News", icon: Newspaper },
   { to: "/quests", label: "Quests", icon: Target },
   { to: "/game", label: "Game", icon: Gamepad2 },
+  { to: "/globe", label: "Globe", icon: Globe2 },
   { to: "/intelligence", label: "Intelligence", icon: Microscope },
   { to: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { to: "/about", label: "About", icon: Info },

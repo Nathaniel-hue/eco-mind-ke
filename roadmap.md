@@ -7,6 +7,7 @@
 
 ## Next generation
 - [x] Phase 1: EcoFactCheck, EcoEvidence, EcoTrade-offs, saved investigations.
+- [x] Eco Globe with green achievements and red damage dots.
 - [ ] Phase 2: EcoSim, EcoTrace. Phase 3: organisations, EcoProjects, EcoBenchmark, EcoAudit. Phase 4: EcoKnowledge, EcoWatch, EcoRisk, EcoCompliance.
 
 ## Completed
